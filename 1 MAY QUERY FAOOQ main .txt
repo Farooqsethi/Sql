@@ -1,0 +1,35 @@
+SELECT * FROM employee WHERE Salary > 70000;
+SELECT * FROM employee WHERE Gender = 'f';
+SELECT * FROM employee WHERE Gender = m;
+SELECT * FROM employee WHERE Department = 1 and Gender = 'f';
+
+SELECT Max(Salary) as MAXSalary from employee;
+SELECT COUNT(id) as Employeesover_30k from employee where salary > 30000;
+SELECT SUM(Salary + 5000) as net_salary from employee;
+UPDATE employee set  Salary = (Salary + 5000);
+
+SELECT e.id emid, e.name emname, d.d_name Departmentname FROM employee e INNER JOIN department d on e.Department = d.d_id;
+
+SELECT count(e.id) emcount,  e.id emid, e.name emname, d.d_name Departmentname FROM employee e INNER JOIN department d on e.Department = d.d_id group by d.d_name;
+
+SELECT COUNT(id) Totalemployee, Gender from employee GROUP by Gender;
+
+SELECT SUM(salary) TotalSalaries, department.d_name  FROM employee INNER JOIN department on employee.Department = department.d_id GROUP By department.d_name;
+
+SELECT SUM(employee.salary) AS TotalSalaries, department.d_name 
+FROM employee 
+INNER JOIN department ON employee.Department = department.d_id 
+GROUP BY department.d_name  
+ORDER BY TotalSalaries;
+
+SELECT SUM(employee.salary) AS TotalSalaries, department.d_name 
+FROM employee 
+INNER JOIN department ON employee.Department = department.d_id 
+GROUP BY department.d_name  
+ORDER BY TotalSalaries DESC Limit 3;
+
+Function Sequence:
+where 
+group
+order
+limit

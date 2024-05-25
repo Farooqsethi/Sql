@@ -1,0 +1,37 @@
+Create Table:
+
+CREATE TABLE employee (
+  Id INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(200) NOT NULL,
+  Age INT NOT NULL,
+  Gender ENUM('m', 'f') NOT NULL,
+  Contact_No VARCHAR(200) NOT NULL,
+  Salary INT NOT NULL,
+  Department VARCHAR(250) NOT NULL,
+  joining_data DATE NOT NULL
+);
+
+Insert Data:
+
+INSERT INTO employee (Name, Age, Gender, Contact_No, Salary, Department, joining_data)
+VALUES
+  ('Monis', 30, 'm', '0123456789', 50000, 'Production', '2020-01-01'),
+  ('Farooq', 28, 'm', '0987654321', 45000, 'Production', '2019-06-01'),
+  ('Siddiq', 40, 'm', '0234567890', 60000, 'Production', '2018-03-01'),
+  ('Arham', 35, 'm', '0543210987', 55000, 'Production', '2017-09-01'),
+  ('Ahmed', 32, 'm', '0765432109', 50000, 'Production', '2019-02-01'),
+  ('Moiz', 29, 'm', '0890123456', 40000, 'Production', '2018-11-01'),
+  ('Fariha', 38, 'f', '0345678901', 50000, 'Production', '2015-01-01'),
+  ('Hamza', 36, 'm', '0678901234', 52000, 'Production', '2014-08-01'),
+  ('Areesh', 31, 'm', '0567890123', 48000, 'Production', '2013-12-01'),
+  ('Faizan', 42, 'm', '0789012345', 62000, 'Production', '2012-06-01'),
+  ('Farhan', 39, 'm', '0934567890', 50000, 'Production', '2011-03-01'),
+  ('Khalid', 34, 'm', '0210987654', 51000, 'Production', '2010-09-01'),
+  ('Akhtar', 30, 'm', '0654321098', 46000, 'Production', '2009-11-01'),
+  ('Shahid', 44, 'm', '0821357986', 63000, 'Production', '2008-05-01'),
+  ('Nawaz', 37, 'm', '0412567890', 50000, 'Production', '2007-01-01'),
+  ('Anwar', 35, 'm', '0598765432', 52000, 'Production', '2006-08-01'),
+  ('Hammad', 32, 'm', '0756843201', 49000, 'Production', '2005-12-01'),
+  ('Monis', 43, 'm', '0132456789', 64000, 'Production', '2004-06-01'),
+  ('Farooq', 36, 'm', '0984123654', 50000, 'Production', '2003-03-01'),
+  ('Siddiq', 33, 'm', '0256890743', 50000, 'Production', '2002-09-01');
