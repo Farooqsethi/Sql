@@ -6,10 +6,10 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
-//require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
-//$mail = new PHPMailer(true);
+$mail = new PHPMailer(true);
 include('dbcon.php');
 session_start();
 //session_unset();
@@ -163,7 +163,7 @@ if (isset($_POST['checkout'])) {
     function confirmationCode()
     {
         $code = str_pad(rand(0, pow(10, 6) - 1), 6, 0, STR_PAD_LEFT);
-        return '#od' . $code;
+        return  $code;
     }
 
     $userId = $_SESSION['sessionid'];
@@ -192,7 +192,7 @@ if (isset($_POST['checkout'])) {
     $itemCount = count($_SESSION['cart']);
     $pQuantityCount = 0;
     $pTotal = 0;
-    $invoiceQuery = $pdo->prepare("INSERT INTO `invoices`(`userid`, `useremail`, `username`, `itemcount`, `totalquantity`, `totalamount`, `invoicedate`, `invoicetime`, `confirmationcode`) VALUES(:iui,:iue,:iun,:itc,:itq,:ita,:id,:it,:icc) ");
+    $invoiceQuery = $pdo->prepare("INSERT INTO `invoices`(`userid`, `useremail`, `username`, `itemcount`, `totalquantity`, `totalamount`, `invoicedate`, `invoicetime`, `confirmationcode`) VALUES(:iui,:iue,:iun,:itc,:itq,:ita,:id,:it,:icc)");
 
     $invoiceQuery->bindParam("iui", $userId);
     $invoiceQuery->bindParam("iue", $userEmail);
@@ -210,12 +210,12 @@ if (isset($_POST['checkout'])) {
     $invoiceQuery->bindParam("ita", $pTotal);
     $invoiceQuery->execute();
     unset($_SESSION['cart']);
-    echo "<script>alert('order placed successfully');
-    location.assign('index.php');
+    echo "<script>alert('Thank you for you order');
+    location.assign('thankyou?odr=" . $confirmationCode ."');
     </script>";
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -239,7 +239,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Confirmation of order';
-    $mail->Body    = 'Dear ' . $_SESSION['sessionName'] . ' your order confirmation code is ' . $confirmationCode . '</b>';
+    $mail->Body    = 'Dear <br>' . $_SESSION['sessionName'] . ' your order confirmation code is ' . $confirmationCode . '<br>';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
@@ -249,4 +249,9 @@ try {
 }
 }
 
+// unset($_SESSION['cart']);
+// echo "<script>alert('order placed successfully');
+// location.assign('thankyou?odr=" . $confirmationkey ."');
+// </script>";
+// }
 ?>

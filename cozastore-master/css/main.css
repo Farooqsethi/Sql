@@ -3365,7 +3365,7 @@ table.table-my-orders {
 table.table-my-orders tr.table_head th {
   font-size: 18px;
 }
-
+.spacer{margin: 15px;}
 /*//////////////////////////////////////////////////////////////////
 [ SSM ]*/
 @media (max-width: 480px) {
@@ -3386,6 +3386,7 @@ table.table-my-orders tr.table_head th {
   .p-r-15-ssm {padding-right: 15px;}
 
   .w-full-ssm {width: 100%;}
+
 
   /*---------------------------------------------*/
   .respon3 {
